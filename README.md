@@ -197,10 +197,10 @@ Success
 Success
 ```
 {
-    title : i love javascript
-|  author : linda hanson
-|  description : javascript is a programming language
-|  body: javascript is a webdevelopment scripting language
+    title : i love softwares
+|  author : ichie chinemerem
+|  description : softwares makes life easy
+|  body: softwares makes life easy.....
 |  created_at :  data
 }
 ```

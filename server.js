@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 const { success, error } = require("consola");
 const ejs = require("ejs")
 const bodyParser = require('body-parser')
-const passport = require('passport');
 
 const PostController = require('./controllers/PostControl')
 const homeController = require('./controllers/homeBlog')

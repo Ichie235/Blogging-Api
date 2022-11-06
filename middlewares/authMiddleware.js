@@ -15,7 +15,7 @@ module.exports.checkUser = (req, res, next) => {
         } else {
           const user = await UserModel.findById(decodedToken.id);
           if (user){
-           res.render('createPost')
+            res.json({ created: true });
           }else{
              return res.render('login')
           }

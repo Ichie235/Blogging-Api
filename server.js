@@ -52,7 +52,7 @@ app.get('/auth/login',(req,res)=>{
 })
  app.get("/",homeController)
 
-app.get("/post/:id",checkUser, getPostController)
+app.get("/post/:id",getPostController)
 
 app.get("/blogs/:title",searchPostController)
 
@@ -63,7 +63,7 @@ app.get("/posts/new",checkUser,PostController)
   
 
 // Connecting to database using mongoose library
-mongoose.connect(DB,{useNewUrlParser:true})
+mongoose.connect(DB,{useNewUrlParser:true,useUnifiedTopology:true})
 
 
  // Start Listenting for the server on PORT

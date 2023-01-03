@@ -1,6 +1,6 @@
 const blogPost = require('../models/blogPost')
 
-module.exports= async(req,res)=>{
+module.exports= async(req,res,next)=>{
      // sending back data to the index.html file 
   //  const blogposts = await blogPost.find({})
   //  res.render('index',{
@@ -37,9 +37,7 @@ module.exports= async(req,res)=>{
       result: result.data 
       })
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({ msg: "Sorry, something went wrong" });
+    console.log(error)
   }
   
 }
-

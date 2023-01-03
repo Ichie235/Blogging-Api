@@ -1,6 +1,7 @@
 const blogPost = require('../models/blogPost')
 
 module.exports = async(req,res)=>{
+   try{
       // sending back the data based on filter by title and author
       const title = req.params.title
       const author = req.params.author
@@ -15,4 +16,8 @@ module.exports = async(req,res)=>{
       res.render('post',{
         blogposts
       })
+    }catch(error){
+      error.type = 'Not Found'
+   next(error)
+    }
 }

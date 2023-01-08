@@ -1,11 +1,10 @@
 const express = require("express")
-const mongoose = require("mongoose")
+
 const { success, error } = require("consola");
-const ejs = require("ejs")
-const bodyParser = require('body-parser')
+
 const cookieParser = require("cookie-parser");
 
-const PostController = require('./controllers/PostControl')
+
 const homeController = require('./controllers/homeBlog')
 const storePostController = require('./controllers/storePostControl')
 const getPostController = require('./controllers/getPostByIdControl')
@@ -36,46 +35,46 @@ app.use(express.static('public'))
 app.use(cookieParser());
 
 
-////initializing middleware to parser body of request
-app.use(bodyParser.json())
+//initializing middleware to parser body of request
 
-//allows req.body object will contain values of any type instead of just strings.
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.urlencoded())
+app.use(express.json());
 
 app.use('/signup', authRoutes);
 
 
-// Getting routes
+// Rendering view routes
+app.get("/",homeController)
+
 app.get('/auth/register',(req,res)=>{
   res.render('register')
 })
+
 app.get('/auth/login',(req,res)=>{
   res.render('login')
 })
-app.get("/",homeController)
+
+app.get("/error",(req,res)=>{
+  res.render('error')
+})
 
 app.get("/post/:id",getPostController)
 
 app.get("/blogs/:title",searchPostController)
 
-app.get("/posts/new",checkUser,PostController)
+app.get("/posts/new",checkUser,(req,res)=>{
+    res.render('createPost')
+})
   
 app.post("/posts/store",storePostController)
-
-app.get("/error",(req,res)=>{
-  res.render('error')
-})
 
 
 // Handle asynchronous error using error middleware
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(400)
-  res.render('error')
-  next
+  res.redirect('/error')
 });
-
-
 
  // Start Listenting for the server on PORT
  app.listen(PORT, () =>

@@ -3,28 +3,19 @@ const jwt = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
 
 module.exports.checkUser = (req, res, next) => {
-  const token = req.cookies.jwt;
-  if (token) {
-    jwt.verify(
-      token,
-      APP_SECRET,
-      async (err, decodedToken) => {
-        if (err) {
-          res.render('login');
-          return;
-        } else {
-          const user = await UserModel.findById(decodedToken.id);
-          if (user){
-            res.json({ created: true });
-          }else{
-             return res.render('login')
-          }
-          next();
-        }
-      }
-    );
-  } else {
-    res.render('login');
-    next();
-  }
+  const tokenData = req.cookies.myToken;
+  
+    if(!tokenData){
+    return res.status(403).send({message:'Invalid token-data'})
+    }
+    let payload
+    try{
+        payload = jwt.verify(tokenData,APP_SECRET)
+    }catch (e){
+       if(e instanceof jwt.JsonWebTokenError){
+        res.status(401).send({message:'Invalid token'})
+       }
+       return res.status(400).send({message:'Invalid token, please validate token'})
+    }
+    res.render('createPost')
 }

@@ -18,6 +18,7 @@ module.exports = async(req,res,next)=>{
      blogposts
    }) 
   } catch (error) {
-    console.log(error)
+     console.log(error)
+    res.redirect('/error')
   }
 }

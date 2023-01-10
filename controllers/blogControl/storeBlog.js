@@ -1,4 +1,4 @@
-const blogPost = require('../models/blogPost')
+const blogPost = require('../../models/blogPost')
 
 module.exports = (req,res)=>{
     // console.log(req.body)

@@ -1,4 +1,3 @@
-const UserModel = require("../models/user");
 const jwt = require("jsonwebtoken");
 const { APP_SECRET } = require("../config");
 
@@ -6,7 +5,8 @@ module.exports.checkUser = (req, res, next) => {
   const tokenData = req.cookies.myToken;
   
     if(!tokenData){
-    return res.status(403).send({message:'Invalid token-data'})
+    return res.status(403)
+              .redirect('/auth/login')
     }
     let payload
     try{

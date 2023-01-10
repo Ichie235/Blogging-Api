@@ -1,6 +1,6 @@
-const UserModel = require("../models/user");
+const UserModel = require("../../models/user");
 const jwt = require("jsonwebtoken");
-const { APP_SECRET } = require("../config/index");
+const { APP_SECRET } = require("../../config/index");
 
 //this function is used to create token using user id
 const createToken = (id) => {

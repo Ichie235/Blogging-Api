@@ -5,10 +5,10 @@ const { success, error } = require("consola");
 const cookieParser = require("cookie-parser");
 
 
-const homeController = require('./controllers/homeBlog')
-const storePostController = require('./controllers/storePostControl')
-const getPostController = require('./controllers/getPostByIdControl')
-const searchPostController = require('./controllers/searchPostControl')
+const homeController = require('./controllers/blogControl/homeBlog')
+const storeBlogControl = require('./controllers/blogControl/storeBlog')
+const getBlogControl = require('./controllers/blogControl/getBlogById')
+const searchBlogControl = require('./controllers/blogControl/searchBlog')
 
 const { checkUser } = require("./middlewares/authMiddleware");
 
@@ -58,15 +58,15 @@ app.get("/error",(req,res)=>{
   res.render('error')
 })
 
-app.get("/post/:id",getPostController)
+app.get("/post/:id",getBlogControl)
 
-app.get("/blogs/:title",searchPostController)
+app.get("/blogs/:title",searchBlogControl)
 
 app.get("/posts/new",checkUser,(req,res)=>{
     res.render('createPost')
 })
   
-app.post("/posts/store",storePostController)
+app.post("/posts/store",storeBlogControl)
 
 
 // Handle asynchronous error using error middleware

@@ -27,7 +27,6 @@ module.exports= async(req,res,next)=>{
       };
     }
     result.data = await blogPost.find({})
-    // const blogposts = result.data
       .sort("-_id")
       .skip(startIndex)
       .limit(limit)

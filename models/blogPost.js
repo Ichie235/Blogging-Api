@@ -8,8 +8,7 @@ const blogPostSchema = new Schema({
     },
     author:  { 
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     description:  {
         type: String,

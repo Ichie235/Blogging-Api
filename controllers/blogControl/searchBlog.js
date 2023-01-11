@@ -1,23 +1,26 @@
+const { render } = require('ejs')
 const blogPost = require('../../models/blogPost')
 
-module.exports = async(req,res)=>{
-   try{
-      // sending back the data based on filter by title and author
-      const title = req.params.title
-      const author = req.params.author
-      const blogposts = await blogPost.find({title:title,author:author})
-        .then(blog=>{
-          res.send(blog)
-        })
-        .catch(err=>{
-          console.log(err)
-          res,send(err)
-        })
-      res.render('post',{
-        blogposts
-      })
-    }catch(error){
-      error.type = 'Not Found'
-   next(error)
-    }
+module.exports = (req,res)=>{
+    try {
+        blogPost.find(
+          {
+            $or: [
+              { title: { $regex: req.query.dsearch,$options: 'i' } },
+              { author: { $regex: req.query.dsearch,$options: 'i' } }
+            ],
+          },
+          (err, result) => {
+            if (err) {
+              console.log(err);
+            } else {
+              //res.render('index',{data});
+              console.log(result);
+              res.render('index',{result})
+            }    }
+            );
+          } catch (error) {
+            console.log(error);
+          }
 }
+

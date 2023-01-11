@@ -36,10 +36,8 @@ app.use(cookieParser());
 
 //initializing middleware to parser body of request
 
-//app.use(express.urlencoded())
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-//app.use(express.json());
+app.use(express.urlencoded())
+app.use(express.json());
 
 app.use("/signup", authRoutes);
 

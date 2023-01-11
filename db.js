@@ -3,7 +3,7 @@ const {MONGODB_URI} = require('./config/index')
 
 // connect to mongodb
 function connectToMongoDB() {
-    moogoose.connect(MONGODB_URI);
+    moogoose.connect(MONGODB_URI,{ useNewUrlParser: true });
 
     moogoose.connection.on('connected', () => {
         console.log('Connected to MongoDB successfully');

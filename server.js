@@ -20,8 +20,7 @@ const { PORT } = require("./config");
 const db = require("./db");
 const blogPost = require("./models/blogPost");
 
-// Connecting to database using mongoose library
-db.connectToMongoDB();
+
 
 // Initialize the application
 const app = express();
@@ -77,10 +76,14 @@ app.use((err, req, res, next) => {
   res.redirect("/error");
 });
 
-// Start Listenting for the server on PORT
+// Connecting to database using mongoose library
+db.connectToMongoDB().then(()=>{
+    // Start Listenting for the server on PORT
 app.listen(PORT, () =>
-  success({
-    message: `Server successfully started on http://localhost:${PORT}`,
-    badge: true,
-  })
+success({
+  message: `Server successfully started on http://localhost:${PORT}`,
+  badge: true,
+})
 );
+})
+

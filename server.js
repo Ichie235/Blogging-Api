@@ -3,7 +3,7 @@ const express = require("express");
 const { success, error } = require("consola");
 
 const cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
+
 
 const homeController = require("./controllers/blogControl/homeBlog");
 const storeBlogControl = require("./controllers/blogControl/storeBlog");

@@ -19,7 +19,7 @@ This is an api for a blog app
 
 ---
 ## Base URL
-
+https://ichie-blogging-api.cyclic.app/
 
 
 ## Models
